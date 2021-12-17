@@ -1,4 +1,4 @@
-![alt text](Logo.svg)
+![alt text](logo.svg)
 
 Proyecto desarrollado en Symfony donde se va a exponer la posibilidad al usuario de organizar un listado de tareas.
 
