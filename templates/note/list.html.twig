@@ -7,16 +7,18 @@
     <table class="table table-striped">
         <thead>
             <tr>
-            <th scope="col">#</th>
+            <th scope="col">Title</th>
             <th scope="col">Description</th>
+            <th scope="col">Date created</th>
             <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for index, note in notes %}
                 <tr>
-                    <th scope="row">{{ index + 1 }}</th>
+                    <td>{{ note.title }}</td>
                     <td>{{ note.description }}</td>
+                    <td>{{ note.datecreated }}</td>
                 </tr>
             {% else %}    
                 <tr>
