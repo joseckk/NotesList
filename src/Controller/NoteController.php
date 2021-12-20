@@ -14,14 +14,28 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class NoteController extends AbstractController
 {
+    const ELEMENTS_FOR_PAGES = 10;
+
     /**
-     * @Route("/", name="app_note_list")
+     * @Route(
+     *  "/{page}", 
+     *  name="app_note_list",
+     *  defaults={
+     *      "page": 1
+     *  },
+     *  requirements={
+     *      "page"="\d+"
+     *  },
+     *  methods={
+     *      "GET"
+     *  }
+     * )
      */
-    public function list(NoteRepository $notesRepository): Response
+    public function list(int $page, NoteRepository $notesRepository): Response
     {
-        $notes = $notesRepository->findAll();
         return $this->render('note/list.html.twig', [
-            'notes' => $notes,
+            'notes' => $notesRepository->lookingForAll($page, self::ELEMENTS_FOR_PAGES),
+            'page' => $page,
         ]);
     }
 

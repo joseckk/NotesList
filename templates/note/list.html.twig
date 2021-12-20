@@ -31,4 +31,21 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <div class="mt-3">
+        {{
+            include(
+                'commons/_pagination.html.twig',
+                {
+                    elements_for_pages: constant(
+                        'App\\Controller\\NoteController::ELEMENTS_FOR_PAGES'
+                    ),
+                    total_elements: notes.count,
+                    actual_page: page
+                }
+            )
+        }}
+    </div>
+
+    <a href="{{ path('app_note_new') }}">Create new</a>
 {% endblock %}

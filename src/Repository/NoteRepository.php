@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Note;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -18,6 +19,24 @@ class NoteRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Note::class);
     }
+
+    public function pagination($dql, $page, $elementsforpages)
+    {
+        $paginator = new Paginator($dql);
+        $paginator->getQuery()
+        ->setFirstResult($elementsforpages * ($page -1))
+        ->setMaxResults($elementsforpages);
+        return $paginator;
+    }
+
+    public function lookingForAll($page = 1, $elementsforpages = 5)
+    {
+        $query = $this->createQueryBuilder('t')
+                ->getQuery()
+        ;
+        
+        return $this->pagination($query, $page, $elementsforpages);
+    } 
 
     // /**
     //  * @return Note[] Returns an array of Note objects
