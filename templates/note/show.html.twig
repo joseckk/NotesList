@@ -8,19 +8,23 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ note.id }}</td>
+                <th>Title</th>
+                <td>{{ note.title }}</td>
             </tr>
             <tr>
                 <th>Description</th>
                 <td>{{ note.description }}</td>
             </tr>
+            <tr>
+                <th>Date created</th>
+                <td>{{ note.datecreated }}</td>
+            </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('note_index') }}">back to list</a>
+    <a href="{{ path('app_note_list') }}">back to list</a>
 
-    <a href="{{ path('note_edit', {'id': note.id}) }}">edit</a>
+    <a href="{{ path('app_note_edit', {'id': note.id}) }}">edit</a>
 
     {{ include('note/_delete_form.html.twig') }}
 {% endblock %}
