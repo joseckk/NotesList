@@ -66,7 +66,7 @@ class NoteController extends AbstractController
     }
 
     /**
-     * @Route("/show{id}", name="app_note_show", methods={"GET"})
+     * @Route("/show/{id}", name="app_note_show", methods={"GET"})
      */
     public function show(Note $note): Response
     {

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @AppAssert\NoteUnique
- * @ORM\Entity(repositoryClass=NoteRepository::class)
+ * @ORM\Entity(repositoryClass=App\Repository\NoteRepository::class)
  */
 class Note
 {
@@ -26,7 +26,7 @@ class Note
     private $description;
 
     /**
-     * @Assert\NotBlank(message="The description field cannot be empty")
+     * @Assert\NotBlank(message="The title field cannot be empty")
      * @ORM\Column(type="string", length=255)
      */
     private $title;
