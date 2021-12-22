@@ -107,4 +107,20 @@ class NoteController extends AbstractController
 
         return $this->redirectToRoute('app_note_list', [], Response::HTTP_SEE_OTHER);
     }
+
+    /**
+     * @Route("/{id}", name="app_note_finish", methods={"POST"})
+     */
+    public function finalizar(Note $note, Request $request): Response
+    {
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+            $note->setFinish(!$note->getFinish());
+            $em->flush();
+            return $this->json([
+                'finish' => $note->getFinish()
+            ]);
+        }
+        throw $this->createNotFoundException();
+    }
 }

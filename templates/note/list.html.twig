@@ -16,12 +16,19 @@
         <tbody>
             {% for index, note in notes %}
                 <tr>
-                    <td>{{ note.title }}</td>
+                    <td class="title">{{ note.title }}</td>
                     <td>{{ note.description }}</td>
                     <td>{{ note.datecreated }}</td>
                     <td>
                         <a href="{{ path('app_note_show', {'id': note.id}) }}">show</a>
                         <a href="{{ path('app_note_edit', {'id': note.id}) }}">edit</a>
+                        <a href="#"
+                            class="btn btn-link mg-3 finalize"
+                            data-url="{{ path('app_note_finish', {'id': note.id}) }}"
+                            data-opposite-text="{{ note.finish ? 'Finalize' : 'Unfinalize'}}"
+                            >
+                            {{ note.finish ? 'Unfinalize' : 'Finalize'}}
+                        </a>
                     </td>
                 </tr>
             {% else %}    
