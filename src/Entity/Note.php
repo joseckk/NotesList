@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\NoteRepository;
-use DateTime;
+use App\Validator as AppAssert;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @AppAssert\NoteUnique
  * @ORM\Entity(repositoryClass=NoteRepository::class)
  */
 class Note
@@ -19,11 +20,13 @@ class Note
     private $id;
 
     /**
+     * @Assert\NotBlank(message="The description field cannot be empty")
      * @ORM\Column(type="string", length=255)
      */
     private $description;
 
     /**
+     * @Assert\NotBlank(message="The description field cannot be empty")
      * @ORM\Column(type="string", length=255)
      */
     private $title;
